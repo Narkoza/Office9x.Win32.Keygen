@@ -3,10 +3,17 @@
 #include "win.h"
 #include "resource.h"
 
+int ScreenWidth, ScreenHeight, WindowWidth, WindowHeight;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
 				   LPSTR lpCmdLine, int nShowCmd)
 {
 	srand(GetTickCount());
+	
+	ScreenWidth = GetSystemMetrics(SM_CXSCREEN);
+	ScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+	WindowWidth = 370;
+	WindowHeight = 240;
 
 	/* "Klasa Okna" */
 	WNDCLASS	kWndClass;
@@ -38,7 +45,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
 	/* Tworzenie okna */
 	hWindow = CreateWindowEx(0, "WindowsApp", "Office9x KeyGen", 
 							WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | 
-							WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 370, 240, 
+							WS_VISIBLE, (ScreenWidth/2)-(WindowWidth/2), (ScreenHeight/2)-(WindowHeight/2), WindowWidth, WindowHeight, 
 							HWND_DESKTOP, NULL, hInstance, NULL);
 	
 	ShowWindow(hWindow, nShowCmd);
